@@ -1,3 +1,5 @@
-let countries = require('./countries');
+// let countries = require('./countries');
+let fs = require('fs');
 
-console.log(countries);
+
+fs.writeFileSync('new.txt', 'Hello World');
