@@ -1,13 +1,27 @@
 let countries = require('./countries');
-// let fs = require('fs');
+let fs = require('fs');
+let path = require('path');
+let pathDir = path.join(__dirname, 'files');
+// let http = require('http');
+
+
+
 // fs.writeFileSync('new.txt', 'Hello World');
 
-let http = require('http');
+// http.createServer( (req,resp) => {
+//     resp.writeHead(200, {'Content-Type':'application/json'});
+//     resp.write(JSON.stringify(countries));
+//     resp.end();
+
+// }).listen(4500);
 
 
-http.createServer( (req,resp) => {
-    resp.writeHead(200, {'Content-Type':'application/json'});
-    resp.write(JSON.stringify(countries));
-    resp.end();
+for (let i = 1; i < 6; i++) {
+    fs.writeFileSync(`${pathDir}/file_${i}.txt`, `I love Pakistan ${i}`);
+}
 
-}).listen(4500);
+fs.readdir(pathDir, (err, files) => {
+    files.forEach(file => {
+        console.log(file);
+    });
+});
