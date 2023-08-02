@@ -20,5 +20,8 @@
   "bugs": {
     "url": "https://github.com/aminshoukat/node-tut/issues"
   },
-  "homepage": "https://github.com/aminshoukat/node-tut#readme"
+  "homepage": "https://github.com/aminshoukat/node-tut#readme",
+  "dependencies": {
+    "express": "^4.18.2"
+  }
 }
