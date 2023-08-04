@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home Page</title>
+</head>
+<body>
+
+    <%- include('common/header'); %>
+    <br>
+    <br>
+    <div>Home Page Content</div>
+    <div>User Name: <%= user.name; %></div>
+    <div>User Fater Name: <%= user.father; %></div>
+    <div>User Age: <%= user.age; %></div>
+    <div>User Nationality: <%= user.nationality; %></div>
+    <div>User Skills:
+        <ul>
+            <% user.skills.forEach((item)=> { %>
+                <li><%= item; %></li>
+            <%});%>
+        </ul>
+    </div>
+    <br>
+    <br>
+    <%- include('common/footer'); %>
+</body>
+</html>
