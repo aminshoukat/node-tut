@@ -1,31 +1,33 @@
 const express = require('express');
-const path = require('path');
 const app = express();
-const publicPath = path.join(__dirname, 'public');
 
-// app.use(express.static(publicPath));
 
-// app.get('', (req, resp) => {
-//     resp.sendFile(`${publicPath}/index.html`);
-// });
-// app.get('/about', (req, resp) => {
-//     resp.sendFile(`${publicPath}/about.html`);
-// });
-// app.get('*', (req, resp) => {
-//     resp.sendFile(`${publicPath}/404.html`);
-// });
+const requrestFilter = (req, resp, next) => {
 
-app.set('view engine', 'ejs');
-
-app.get('', (req, resp) => {
-    const user = {
-        "name": "Amin",
-        "father": "Shoukat",
-        "age": "30",
-        "nationality": "Pakistani",
-        "skills": ["HTML 5", "CSS 3", "JS", "jQuery", "PHP", "Node", "MYSQL"]
+    if(!req.query.age) {
+        resp.send('Please provide your age.');
     }
-    resp.render('home', {user} );
+    else if(req.query.age < 10) {
+        resp.send('You are not allowed to access this page.');
+    } else {
+        next();
+    }
+
+}
+
+app.use(requrestFilter);
+
+app.get('/', (req, resp) => {
+    resp.send('Welcome to Home Page');
 });
+
+app.get('/about', (req, resp) => {
+    resp.send('Welcome to Contact Page');
+});
+
+app.get('/contact', (req, resp) => {
+    resp.send('Welcome to Contact Page');
+});
+
 
 app.listen(5000);
